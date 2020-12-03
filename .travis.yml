@@ -1,0 +1,16 @@
+language: generic
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t nileshwagholikar/react-socket-app -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true nileshwagholikar/react-socket-app npm run test
+
+after_success:
+  - docker build -t nileshwagholikar/react-socket-app .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push nileshwagholikar/react-socket-app
