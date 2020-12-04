@@ -1,0 +1,41 @@
+
+.running {
+    background-color: orange;
+}
+
+.finished {
+    background-color: green;
+}
+
+.repaired {
+    background-color: blue;
+    color: #FFFFFF
+}
+
+.errored {
+    background-color: red;
+    color: #FFFFFF;
+}
+
+span {
+    font-weight: 700;
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.icon {
+    flex: 1;
+}
+
+.icon svg {
+    width: 80%;
+    height: 100%;
+    fill: rgba(0, 0, 0, 0.7);
+}
+
+.data {
+    flex: 2;
+}
