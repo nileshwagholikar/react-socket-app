@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './Sensor.css';
+import styles from './Sensor.module.scss';
+import { NavLink } from "react-router-dom";
 
-import { ReactComponent as Measurement } from 'assets/measurement.svg';
-import { ReactComponent as Microscope } from 'assets/microscope.svg';
+import infoIcon from 'assets/info.png'
 
 const Sensor = function(params) {
     const [error, setError] = useState(null);
@@ -10,25 +10,18 @@ const Sensor = function(params) {
     const [status, setStatus] = useState(false);
     const [floor, setFloor] = useState(null);
     const [id, setID] = useState(null);
-    const [install_date, setInstallDate] = useState(null);
-    const [last_maintenance, seLastMaintenance] = useState(null);
+    const [installDate, setInstallDate] = useState(null);
+    const [lastMaintenance, seLastMaintenance] = useState(null);
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
-    const [machine_type, setMachineType] = useState(null);
-    const [timestamp, setTimeStamp] = useState(null);
+    const [machineType, setMachineType] = useState(null);
+    const [timestamp, setTimeStamp] = useState('');
 
-    const Icon = () => {
-        if(machine_type === "measurement") {
-            return(
-                <Measurement />
-            )
-        } else {
-            return (
-                <Microscope />
-            )
-        }
-    }
-
+    /***
+     *
+     * @param data
+     * Sets the states with values in data
+     */
     const setData = (data) => {
         setStatus(data.status);
         setFloor(data.floor);
@@ -47,96 +40,77 @@ const Sensor = function(params) {
         setIsLoaded(true);
     }
 
-    const loadSensorData = () => {
-        setIsLoaded(false);
-        if(id) {
-            fetch(`/api/machines/${id}`)
-                .then(res => res.json())
-                .then(
-                    (result) => {
-                        setData(result.data);
-                    },
-                    (error) => {
-                        setIsLoaded(true);
-                        setError(error);
-                    }
-                )
-        }
-    }
-
+    /***
+     * effect will be called whenever parameters are changes and accordingly states will be updated
+     */
     useEffect(() => {
         setData(params.data)
     }, [params]);
 
-    useEffect(() => {
-        if(id) {
-            fetch(`/api/machines/${id}`)
-                .then(res => res.json())
-                .then(
-                    (result) => {
-                        setIsLoaded(true);
-                        setData(result.data);
-                    },
-                    (error) => {
-                        setIsLoaded(true);
-                        setError(error);
-                    }
-                )
-        }
-    }, [id])
-
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    if (!isLoaded) {
         return <div>Loading...</div>;
+    } else if (error) {
+        return <div>Error: {error.message}</div>;
     } else {
         return (
-            <div className={"d-flex "+status}>
-                <div className="icon"><Icon /></div>
-                <div className="data">
-                    <div><span>Floor:</span> {floor}</div>
-                    <div><span>Machine Type:</span> {machine_type}</div>
-                    <div><span>ID:</span> {id}</div>
-                    <div><span>Status:</span> {status} (
-                        {
-                            timestamp ? 
-                            new Intl.DateTimeFormat("de-DE", {
-                                hour: 'numeric', minute: 'numeric', second: 'numeric',
-                                hour12: true,
-                                year: "numeric",
-                                month: "long",
-                                day: "2-digit"
-                                }).format(new Date(timestamp))
-                            
-                            : ''
-                        }
-                    )</div>
-                    <div><span>Install Date: </span>
-                    {
-                        new Intl.DateTimeFormat("de-DE", {
-                            year: "numeric",
-                            month: "long",
-                            day: "2-digit"
-                            }).format(new Date(install_date))
-                    }
+            <div className={styles[status]}>
+                <div className={styles.title}>
+                    <span>{id}</span>
+                </div>
+                <div className={styles.dFlex}>
+                    <div className={styles.icon}>
+                        <i className={styles[machineType]} />
                     </div>
-                    <div><span>Last Maintenance: </span> 
-                    {
-                        new Intl.DateTimeFormat("de-DE", {
-                            hour: 'numeric', minute: 'numeric', second: 'numeric',
-                            hour12: true,
-                            year: "numeric",
-                            month: "long",
-                            day: "2-digit"
-                            }).format(new Date(last_maintenance))
-                    }
+                    <div className={styles.data}>
+                        <div><span>Floor:</span> {floor}</div>
+                        <div><span>Machine Type:</span> {machineType}</div>
+                        <div><span>Status:</span> {status}</div>
+                        <div><span>Updated:</span> 
+                            {
+                                timestamp ? 
+                                new Intl.DateTimeFormat("de-DE", {
+                                    hour: 'numeric', minute: 'numeric', second: 'numeric',
+                                    hour12: true,
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "2-digit"
+                                    }).format(new Date(timestamp))
+                                
+                                : ''
+                            }
+                        </div>
+                        <div>
+                            <div className={styles.tooltip}><NavLink to={"/details/"+id}><img src={infoIcon} alt="Information" /></NavLink></div>
+                            <div>
+                                <div><span>Install Date: </span>
+                                {
+                                    new Intl.DateTimeFormat("en-GB", {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "2-digit"
+                                        }).format(new Date(installDate))
+                                }
+                                </div>
+                                <div><span>Last Maintenance: </span> 
+                                {
+                                    new Intl.DateTimeFormat("en-GB", {
+                                        hour: 'numeric', minute: 'numeric', second: 'numeric',
+                                        hour12: true,
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "2-digit"
+                                        }).format(new Date(lastMaintenance))
+                                }
+                                </div>
+                                <div><span>Latitude:</span> {latitude}</div>
+                                <div><span>Longitude:</span> {longitude}</div>
+                            </div>
+                        </div>
                     </div>
-                    <div><span>Latitude:</span> {latitude}</div>
-                    <div><span>Longitude:</span> {longitude}</div>
                 </div>
             </div>
-        )
+        );
     }
-}
+};
 
 export default Sensor;

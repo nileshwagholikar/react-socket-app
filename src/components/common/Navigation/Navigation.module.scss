@@ -1,0 +1,22 @@
+.nav{
+    list-style: none;
+    float: left;
+
+    > li {
+        list-style: none;
+        float: left;
+
+        > a:link, > a:visited {
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: #000099;
+            margin-left: 5px;
+        }
+
+        > a:active, > a.active, > a:hover {
+            background-color: #CCCCCC;
+            color: #0000CC;
+        }
+    }
+}

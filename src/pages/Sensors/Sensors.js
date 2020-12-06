@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Socket } from "phoenix";
-import styles from './Sensors.module.css';
+import styles from './Sensors.module.scss';
 
-const Sensor = React.lazy(() => import("../Sensor/Sensor"));
+const Sensor = React.lazy(() => import("components/Sensor/Sensor.js"));
 
 const Sensors = function () {
 	const [error, setError] = useState(null);
@@ -12,20 +12,17 @@ const Sensors = function () {
 	useEffect(() => {
 		if(!sensors.length) {
 			fetch("/api/machines")
-			.then((res) => res.json())
-			.then(
-				(result) => {
-					setIsLoaded(true);
-					setSensors(result.data);
-				},
-				// Note: it's important to handle errors here
-				// instead of a catch() block so that we don't swallow
-				// exceptions from actual bugs in components.
-				(error) => {
-					setIsLoaded(true);
-					setError(error);
-				}
-			);
+				.then((res) => res.json())
+				.then(
+					(result) => {
+						setIsLoaded(true);
+						setSensors(result.data);
+					},
+					(error) => {
+						setIsLoaded(true);
+						setError(error);
+					}
+				);
 		}
 
 		// Open Socket connection
@@ -47,16 +44,16 @@ const Sensors = function () {
 		});
 
 		return () => {
-			channel.off("STOP_SOCKET_EVENTS");
+			channel.off("new");
 			socket.disconnect();
 		};
 
-	})
+	}, [sensors])
 
-	if (error) {
-		return <div>Error: {error.message}</div>;
-	} else if (!isLoaded) {
+	if (!isLoaded) {
 		return <div>Loading...</div>;
+	} else if (error) {
+		return <div>Error: {error.message}</div>;
 	} else {
 		return (
 		<div className={styles.sensorList}>
