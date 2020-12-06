@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Sensor.module.scss';
+import styles from './Sensor.module.css';
 import { NavLink } from "react-router-dom";
-
 import infoIcon from 'assets/info.png'
+
+const dateFormat = require("dateformat");
 
 const Sensor = function(params) {
     const [error, setError] = useState(null);
@@ -53,57 +54,42 @@ const Sensor = function(params) {
         return <div>Error: {error.message}</div>;
     } else {
         return (
-            <div className={styles[status]}>
-                <div className={styles.title}>
-                    <span>{id}</span>
-                </div>
-                <div className={styles.dFlex}>
-                    <div className={styles.icon}>
-                        <i className={styles[machineType]} />
+            <div>
+                <div className={styles.sensorDiv + ' ' + styles[status]}>
+                    <div className={styles.title}>
+                        <span>{id}</span>
                     </div>
-                    <div className={styles.data}>
-                        <div><span>Floor:</span> {floor}</div>
-                        <div><span>Machine Type:</span> {machineType}</div>
-                        <div><span>Status:</span> {status}</div>
-                        <div><span>Updated:</span> 
-                            {
-                                timestamp ? 
-                                new Intl.DateTimeFormat("de-DE", {
-                                    hour: 'numeric', minute: 'numeric', second: 'numeric',
-                                    hour12: true,
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "2-digit"
-                                    }).format(new Date(timestamp))
-                                
-                                : ''
-                            }
+                    <div className={styles.dFlex}>
+                        <div className={styles.icon}>
+                            <i className={styles[machineType]} />
                         </div>
-                        <div>
-                            <div className={styles.tooltip}><NavLink to={"/details/"+id}><img src={infoIcon} alt="Information" /></NavLink></div>
+                        <div className={styles.data}>
+                            <div><span>Floor:</span> {floor}</div>
+                            <div><span>Machine Type:</span> {machineType}</div>
+                            <div><span>Status:</span> {status}</div>
+                            <div><span>Updated: </span>
+                                {
+                                    timestamp ?
+                                        dateFormat(new Date(timestamp.toString()), "ddd, mmm dS, yyyy, hh:MM:ss TT")
+                                        : ''
+                                }
+                            </div>
                             <div>
-                                <div><span>Install Date: </span>
-                                {
-                                    new Intl.DateTimeFormat("en-GB", {
-                                        year: "numeric",
-                                        month: "long",
-                                        day: "2-digit"
-                                        }).format(new Date(installDate))
-                                }
+                                <div className={styles.tooltip}><NavLink to={"/details/"+id}><img src={infoIcon} alt="Information" /></NavLink></div>
+                                <div>
+                                    <div><span>Install Date: </span>
+                                    {
+                                        dateFormat(new Date(installDate.toString()), "ddd, mmm dS, yyyy")
+                                    }
+                                    </div>
+                                    <div><span>Last Maintenance: </span>
+                                    {
+                                        dateFormat(new Date(lastMaintenance.toString()), "ddd, mmm dS, yyyy, hh:MM:ss TT")
+                                    }
+                                    </div>
+                                    <div><span>Latitude:</span> {latitude}</div>
+                                    <div><span>Longitude:</span> {longitude}</div>
                                 </div>
-                                <div><span>Last Maintenance: </span> 
-                                {
-                                    new Intl.DateTimeFormat("en-GB", {
-                                        hour: 'numeric', minute: 'numeric', second: 'numeric',
-                                        hour12: true,
-                                        year: "numeric",
-                                        month: "long",
-                                        day: "2-digit"
-                                        }).format(new Date(lastMaintenance))
-                                }
-                                </div>
-                                <div><span>Latitude:</span> {latitude}</div>
-                                <div><span>Longitude:</span> {longitude}</div>
                             </div>
                         </div>
                     </div>

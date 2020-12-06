@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {NavLink, useParams} from 'react-router-dom';
-import styles from './Details.module.scss';
+import styles from './Details.module.css';
+
+const dateFormat = require("dateformat");
 
 const Details = () => {
     let { machineID } = useParams();
@@ -42,22 +44,12 @@ const Details = () => {
                         <div><span>Status:</span> {data.status}</div>
                         <div><span>Install Date: </span>
                             {
-                                new Intl.DateTimeFormat("en-GB", {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "2-digit"
-                                }).format(new Date(data.install_date))
+                                dateFormat(new Date(data.install_date.toString()), "dddd, mmmm dS, yyyy")
                             }
                         </div>
                         <div><span>Last Maintenance: </span>
                             {
-                                new Intl.DateTimeFormat("en-GB", {
-                                    hour: 'numeric', minute: 'numeric', second: 'numeric',
-                                    hour12: true,
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "2-digit"
-                                }).format(new Date(data.last_maintenance))
+                                dateFormat(new Date(data.last_maintenance.toString()), "dddd, mmmm dS, yyyy, hh:MM:ss TT")
                             }
                         </div>
                         <div><span>Latitude:</span> {data.latitude}</div>
@@ -68,13 +60,7 @@ const Details = () => {
                             <div className={styles.sensorEventsDetails} key={event.timestamp}>
                                 <div>
                                     {
-                                        new Intl.DateTimeFormat("en-GB", {
-                                            hour: 'numeric', minute: 'numeric', second: 'numeric',
-                                            hour12: true,
-                                            year: "numeric",
-                                            month: "long",
-                                            day: "2-digit"
-                                        }).format(new Date(event.timestamp))
+                                        dateFormat(new Date(event.timestamp.toString()), "dddd, mmmm dS, yyyy, hh:MM:ss TT")
                                     }
                                 </div>
                                 <div>{event.status}</div>

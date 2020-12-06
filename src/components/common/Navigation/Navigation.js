@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './Navigation.module.scss';
+import styles from './Navigation.module.css';
 import { NavLink } from "react-router-dom";
 
 const Navigation = function() {
     return(
         <nav>
-            <ul className={styles.nav}>
+            <ul>
                 <li>
                     <NavLink to="/dashboard" exact={true} activeClassName={styles.active}>Dashboard</NavLink>
                 </li>

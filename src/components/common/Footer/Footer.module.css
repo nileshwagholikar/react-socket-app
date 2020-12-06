@@ -1,0 +1,72 @@
+footer {
+    padding: 20px 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyrightText a:link, .copyrightText a:visited {
+    text-decoration: none;
+}
+
+.copyrightText a:hover, .copyrightText a:active {
+    text-decoration: underline;
+}
+
+
+.socialIcons li {
+    list-style: none;
+    float: left;
+    padding-left: 5px;
+}
+
+.socialIcons li a:link, .socialIcons li a:visited {
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-color: #CCCCCC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socialIcons li a i {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.socialIcons li a i.iconFacebook {
+    background: url("../../../assets/icons/icon-facebook.svg") center center no-repeat;
+}
+
+.socialIcons li a i.iconTwitter {
+    background: url("../../../assets/icons/icon-twitter.svg") center center no-repeat;
+}
+
+.socialIcons li a i.iconDribbble {
+    background: url("../../../assets/icons/icon-dribbble.svg") center center no-repeat;
+}
+
+.socialIcons li a i.iconLinkedin {
+    background: url("../../../assets/icons/icon-linkedin.svg") center center no-repeat;
+}
+
+
+.socialIcons li a.facebook:hover {
+    background-color: #3b5998;
+}
+
+.socialIcons li a.twitter:hover {
+    background-color: #00aced;
+}
+
+.socialIcons li a.dribbble:hover {
+    background-color: #ea4c89;
+}
+
+.socialIcons li a.linkedin:hover {
+    background-color: #007bb6;
+}

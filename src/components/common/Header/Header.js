@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from 'assets/logo.png'
-import styles from './Header.module.scss';
+import styles from './Header.module.css';
 import {NavLink} from "react-router-dom";
 
 const Navigation = React.lazy(() => import('../Navigation/Navigation'));

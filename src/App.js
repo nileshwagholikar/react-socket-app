@@ -5,7 +5,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import './App.scss';
+import './App.css';
 
 const Header = React.lazy(() => import('components/common/Header/Header'));
 const Footer = React.lazy(() => import('components/common/Footer/Footer'));

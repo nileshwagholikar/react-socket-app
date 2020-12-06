@@ -1,0 +1,109 @@
+.sensorDiv {
+    padding: 20px;
+    border-radius: 10px;
+    line-height: 24px;
+}
+
+.running {
+    background-color: #fff2d2;
+    -webkit-box-shadow: inset 0 0 40px #f6c244;
+    -moz-box-shadow: inset 0 0 40px #f6c244;
+    box-shadow: inset 0 0 40px #f6c244;
+}
+
+.finished {
+    background-color: #b6edb4;
+    -webkit-box-shadow: inset 0 0 40px #53a451;
+    -moz-box-shadow: inset 0 0 40px #53a451;
+    box-shadow: inset 0 0 40px #53a451;
+}
+
+.repaired {
+    background-color: #c0d4f8;
+    -webkit-box-shadow: inset 0 0 40px #347bf6;
+    -moz-box-shadow: inset 0 0 40px #347bf6;
+    box-shadow: inset 0 0 40px #347bf6;
+}
+
+.errored {
+    background-color: #FF3333;
+    color: #FFFFFF;
+    -webkit-box-shadow: inset 0 0 40px #990000;
+    -moz-box-shadow: inset 0 0 40px #990000;
+    box-shadow: inset 0 0 40px #990000;
+}
+
+.idle {
+    background-color: #c5e5ed;
+    color: #FFFFFF;
+    -webkit-box-shadow: inset 0 0 40px #4ba0b5;
+    -moz-box-shadow: inset 0 0 40px #4ba0b5;
+    box-shadow: inset 0 0 40px #4ba0b5;
+}
+
+.title {
+    text-align: center;
+    font-size: 22px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.dFlex {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.dFlex .icon {
+    flex: 1;
+}
+
+.dFlex .icon i {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.dFlex .icon i.measurement {
+    background: url("../../assets/measurement.svg") center center no-repeat;
+    background-size: cover;
+}
+
+.dFlex .icon i.microscope {
+    background: url("../../assets/microscope.svg") center center no-repeat;
+    background-size: cover;
+}
+
+.dFlex .data {
+    flex: 3;
+}
+
+.dFlex .data span {
+    font-weight: 700;
+}
+
+.dFlex .data .tooltip {
+    position: relative;
+    float: right;
+}
+
+.dFlex .data .tooltip img {
+    width: 30px;
+}
+
+.dFlex .data .tooltip + div {
+    position: absolute;
+    display: none;
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dFlex .data .tooltip:hover + div {
+    display: block;
+}
+
+

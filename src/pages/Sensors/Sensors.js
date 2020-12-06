@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Socket } from "phoenix";
-import styles from './Sensors.module.scss';
+import styles from './Sensors.module.css';
 
 const Sensor = React.lazy(() => import("components/Sensor/Sensor.js"));
 

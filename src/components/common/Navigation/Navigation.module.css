@@ -1,0 +1,22 @@
+nav ul {
+    list-style: none;
+    float: left;
+}
+
+nav ul > li {
+    list-style: none;
+    float: left;
+}
+
+nav ul > li > a:link, nav ul > li > a:visited {
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #000099;
+    margin-left: 5px;
+}
+
+nav ul > li > a:active, nav ul > li > a.active, nav ul > li > a:hover {
+    background-color: #CCCCCC;
+    color: #0000CC;
+}
