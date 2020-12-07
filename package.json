@@ -5,7 +5,8 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.4.0",
+    "@testing-library/user-event": "^12.5.0",
+    "core-js": "^3.8.0",
     "dateformat": "^4.3.1",
     "http-proxy-middleware": "^1.0.6",
     "phoenix": "^1.5.7",
@@ -14,7 +15,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.1",
     "source-map-explorer": "^2.5.1",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
