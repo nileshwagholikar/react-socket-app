@@ -45,12 +45,16 @@ const Details = () => {
                         <div><span>Last Status:</span> {data.status}</div>
                         <div><span>Install Date: </span>
                             {
-                                dateFormat(new Date(data.install_date.toString()), "dddd, mmmm dS, yyyy")
+                                (data && data.install_date) ?
+                                    dateFormat(new Date(data.install_date.toString()), "dddd, mmmm dS, yyyy")
+                                    : ''
                             }
                         </div>
                         <div><span>Last Maintenance: </span>
                             {
-                                dateFormat(new Date(data.last_maintenance.toString()), "dddd, mmmm dS, yyyy, hh:MM:ss TT")
+                                (data && data.last_maintenance) ?
+                                    dateFormat(new Date(data.last_maintenance.toString()), "dddd, mmmm dS, yyyy, hh:MM:ss TT")
+                                    : ''
                             }
                         </div>
                         <div><span>Latitude:</span> {data.latitude}</div>
@@ -62,7 +66,9 @@ const Details = () => {
                             <div className={styles.sensorEventsDetails + ' ' + styles[event.status]} key={event.timestamp}>
                                 <div>
                                     {
-                                        dateFormat(new Date(event.timestamp.toString()), "dddd, mmmm dS, yyyy, hh:MM:ss TT")
+                                        (data && data.timestamp) ?
+                                            dateFormat(new Date(event.timestamp.toString()), "dddd, mmmm dS, yyyy, hh:MM:ss TT")
+                                            : ''
                                     }
                                 </div>
                                 <div>{event.status}</div>

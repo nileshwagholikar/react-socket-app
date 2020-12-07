@@ -79,12 +79,16 @@ const Sensor = function(params) {
                                 <div>
                                     <div><span>Install Date: </span>
                                     {
-                                        dateFormat(new Date(installDate.toString()), "ddd, mmm dS, yyyy")
+                                        installDate ?
+                                            dateFormat(new Date(installDate.toString()), "ddd, mmm dS, yyyy")
+                                            : ''
                                     }
                                     </div>
                                     <div><span>Last Maintenance: </span>
                                     {
-                                        dateFormat(new Date(lastMaintenance.toString()), "ddd, mmm dS, yyyy, hh:MM:ss TT")
+                                        lastMaintenance ?
+                                            dateFormat(new Date(lastMaintenance.toString()), "ddd, mmm dS, yyyy, hh:MM:ss TT")
+                                            : ''
                                     }
                                     </div>
                                     <div><span>Latitude:</span> {latitude}</div>
