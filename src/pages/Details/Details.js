@@ -38,10 +38,11 @@ const Details = () => {
                 <NavLink to='/dashboard'>&lt; Back to Dashboard</NavLink>
                 <div className={styles.details}>
                     <div className={styles.sensorDetails}>
+                        <h2>Sensor Details</h2>
                         <div><span>ID: </span>{data.id}</div>
                         <div><span>Floor:</span> {data.floor}</div>
                         <div><span>Machine Type:</span> {data.machine_type}</div>
-                        <div><span>Status:</span> {data.status}</div>
+                        <div><span>Last Status:</span> {data.status}</div>
                         <div><span>Install Date: </span>
                             {
                                 dateFormat(new Date(data.install_date.toString()), "dddd, mmmm dS, yyyy")
@@ -56,8 +57,9 @@ const Details = () => {
                         <div><span>Longitude:</span> {data.longitude}</div>
                     </div>
                     <div>
+                        <h2>Event Details</h2>
                         { data.events.map((event) => (
-                            <div className={styles.sensorEventsDetails} key={event.timestamp}>
+                            <div className={styles.sensorEventsDetails + ' ' + styles[event.status]} key={event.timestamp}>
                                 <div>
                                     {
                                         dateFormat(new Date(event.timestamp.toString()), "dddd, mmmm dS, yyyy, hh:MM:ss TT")

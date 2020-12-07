@@ -49,50 +49,50 @@
     margin-bottom: 15px;
 }
 
-.dFlex {
+.details {
     display: flex;
     flex-direction: row;
     gap: 15px;
 }
 
-.dFlex .icon {
+.details .icon {
     flex: 1;
 }
 
-.dFlex .icon i {
+.details .icon i {
     display: block;
     width: 100%;
     height: 100%;
 }
 
-.dFlex .icon i.measurement {
+.details .icon i.measurement {
     background: url("../../assets/measurement.svg") center center no-repeat;
     background-size: cover;
 }
 
-.dFlex .icon i.microscope {
+.details .icon i.microscope {
     background: url("../../assets/microscope.svg") center center no-repeat;
     background-size: cover;
 }
 
-.dFlex .data {
+.details .data {
     flex: 3;
 }
 
-.dFlex .data span {
+.details .data span {
     font-weight: 700;
 }
 
-.dFlex .data .tooltip {
+.details .data .tooltip {
     position: relative;
     float: right;
 }
 
-.dFlex .data .tooltip img {
+.details .data .tooltip img {
     width: 30px;
 }
 
-.dFlex .data .tooltip + div {
+.details .data .tooltip + div {
     position: absolute;
     display: none;
     margin-top: 30px;
@@ -102,7 +102,7 @@
     border-radius: 5px;
 }
 
-.dFlex .data .tooltip:hover + div {
+.details .data .tooltip:hover + div {
     display: block;
 }
 

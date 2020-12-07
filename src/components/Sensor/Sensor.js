@@ -59,7 +59,7 @@ const Sensor = function(params) {
                     <div className={styles.title}>
                         <span>{id}</span>
                     </div>
-                    <div className={styles.dFlex}>
+                    <div className={styles.details}>
                         <div className={styles.icon}>
                             <i className={styles[machineType]} />
                         </div>

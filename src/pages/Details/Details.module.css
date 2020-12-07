@@ -34,8 +34,36 @@
     font-weight: 700;
 }
 
+h2 {
+    padding-bottom: 30px;
+    text-align: center;
+}
+
 .sensorEventsDetails {
     display: flex;
     justify-content: space-between;
     margin-bottom: 22px;
+    font-weight: 700;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 20px;
+}
+
+.running {
+    color: #f6c244;
+}
+
+.finished {
+    color: #53a451;
+}
+
+.repaired {
+    color: #347bf6;
+}
+
+.errored {
+    color: #990000;
+}
+
+.idle {
+    color: #4ba0b5;
 }
