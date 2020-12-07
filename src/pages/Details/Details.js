@@ -66,7 +66,7 @@ const Details = () => {
                             <div className={styles.sensorEventsDetails + ' ' + styles[event.status]} key={event.timestamp}>
                                 <div>
                                     {
-                                        (data && data.timestamp) ?
+                                        (event.timestamp) ?
                                             dateFormat(new Date(event.timestamp.toString()), "dddd, mmmm dS, yyyy, hh:MM:ss TT")
                                             : ''
                                     }
